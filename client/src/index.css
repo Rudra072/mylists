@@ -1,0 +1,247 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  transition: color 100ms ease, background-color 150ms ease,
+    background 250ms ease;
+}
+
+@layer base {
+  html {
+    font-family: "DM Sans", sans-serif;
+  }
+}
+
+.unset {
+  all: unset;
+}
+
+.stretch {
+  width: 100%;
+}
+
+.right {
+  right: 0;
+}
+
+.left {
+  left: 0;
+}
+
+.circle {
+  transition: all 0.4s ease;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.pink-gradient {
+  background: linear-gradient(
+    0deg,
+    hsla(333, 63%, 67%, 1) 0%,
+    hsla(0, 0%, 85%, 1) 50%
+  );
+}
+
+.blue-gradient {
+  background: linear-gradient(
+    0deg,
+    hsla(211, 98%, 64%, 1) 0%,
+    hsla(0, 0%, 85%, 1) 50%
+  );
+}
+
+.green-gradient {
+  background: linear-gradient(
+    0deg,
+    hsla(139, 49%, 40%, 1) 0%,
+    hsla(0, 0%, 85%, 1) 50%
+  );
+}
+
+.violet-gradient {
+  background: linear-gradient(
+    0deg,
+    hsla(257, 91%, 70%, 1) 0%,
+    hsla(0, 0%, 85%, 1) 50%
+  );
+}
+
+.yellow-gradient {
+  background: linear-gradient(
+    0deg,
+    hsla(43, 93%, 47%, 0.6) 0%,
+    hsla(0, 0%, 85%, 1) 50%
+  );
+}
+
+.orange-gradient {
+  background: linear-gradient(
+    0deg,
+    hsla(21, 86%, 57%, 1) 0%,
+    hsla(0, 0%, 85%, 1) 50%
+  );
+}
+
+.red-gradient {
+  background: linear-gradient(
+    0deg,
+    hsla(4, 90%, 64%, 1) 0%,
+    hsla(0, 0%, 85%, 1) 50%
+  );
+}
+
+.light {
+  --backgroundPrimary: 246, 245, 243;
+  --backgroundSecondary: 253, 253, 253;
+  --backgroundTertiary: 232, 230, 227;
+  --backgroundOptional: 253, 253, 253;
+
+  --textPrimary: 240, 242, 245;
+  --textSecondary: 117, 127, 138;
+  --textTertiary: 16, 19, 24;
+
+  --border: 197, 204, 211;
+  --stroke: 73, 81, 91;
+  --optionMenuHover: 240, 242, 245;
+
+  --scrollbarThumb: 169, 169, 169;
+  --scrollbarTrack: 253, 253, 253;
+}
+
+.dark {
+  --backgroundPrimary: 16, 19, 24;
+  --backgroundSecondary: 31, 36, 42;
+  --backgroundTertiary: 49, 56, 64;
+  --backgroundOptional: 49, 56, 64;
+
+  --textPrimary: 240, 242, 245;
+  --textSecondary: 143, 153, 163;
+  --textTertiary: 240, 242, 245;
+
+  --border: 73, 81, 91;
+  --stroke: 143, 153, 163;
+  --optionMenuHover: 49, 56, 64;
+
+  --scrollbarThumb: 31, 36, 42;
+  --scrollbarTrack: 66, 66, 66;
+}
+
+.spinner {
+  --size: 100px;
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+
+  & .path {
+    stroke-width: 4;
+    stroke-linecap: round;
+  }
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90svh;
+}
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  --size: 50px;
+  width: var(--size);
+  height: var(--size);
+  background-color: red;
+}
+
+.fade {
+  background-color: white;
+  opacity: 0.15;
+}
+
+.scrollbar::-webkit-scrollbar {
+  width: 1em;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  border-radius: 100vw;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background: var(--bgColor);
+  border: 0.25em solid var(--color);
+  border-radius: 100vw;
+}
+
+.scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--bgHoverColor);
+}
+
+.scrollbar::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+.masked-overflow {
+  /* scroll bar width, for use in mask calculations */
+  --scrollbar-width: 8px;
+
+  /* mask fade distance, for use in mask calculations */
+  --mask-height: 22px;
+
+  /* If content exceeds height of container, overflow! */
+  overflow-y: auto;
+
+  /* Our height limit */
+  height: 88vh;
+
+  /* Need to make sure container has bottom space,
+otherwise content at the bottom is always faded out */
+  padding-bottom: var(--mask-height);
+
+  /* Keep some space between content and scrollbar */
+  padding-right: 20px;
+
+  /* The CSS mask */
+
+  /* The content mask is a linear gradient from top to bottom */
+  --mask-image-content: linear-gradient(
+    to bottom,
+    transparent,
+    black var(--mask-height),
+    black calc(100% - var(--mask-height)),
+    transparent
+  );
+
+  /* Here we scale the content gradient to the width of the container 
+minus the scrollbar width. The height is the full container height */
+  --mask-size-content: calc(100% - var(--scrollbar-width)) 100%;
+
+  /* The scrollbar mask is a black pixel */
+  --mask-image-scrollbar: linear-gradient(black, black);
+
+  /* The width of our black pixel is the width of the scrollbar.
+The height is the full container height */
+  --mask-size-scrollbar: var(--scrollbar-width) 100%;
+
+  /* Apply the mask image and mask size variables */
+  /* mask-image: var(--mask-image-content), var(--mask-image-scrollbar); */
+  mask-size: var(--mask-size-content), var(--mask-size-scrollbar);
+
+  /* Position the content gradient in the top left, and the 
+scroll gradient in the top right */
+  mask-position: 0 0, 100% 0;
+
+  /* We don't repeat our mask images */
+  mask-repeat: no-repeat, no-repeat;
+}
