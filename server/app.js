@@ -32,7 +32,7 @@ const corsOptions = {
   allowedHeaders: ["content-type"],
 };
 
-app.use(cors({ credentials: true, origin: "https://mylists.onrender.com/" }));
+app.use(cors({ credentials: true, origin: "https://myylists.netlify.app" }));
 
 app.use("/auth", userRoutes);
 
